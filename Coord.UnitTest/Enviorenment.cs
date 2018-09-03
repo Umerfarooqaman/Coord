@@ -12,7 +12,7 @@ namespace Coord.UnitTest
         [AssemblyInitialize]
         public static void BeforeClass(TestContext tc)
         {
-          TollsClient.Key= "UvLl8fGHIO6P181FI8VhqrZYoFouvWrQRWCHNQv_pZc";
+          TollsClient.Key= "Your_API_KEY";
 
         }
 
