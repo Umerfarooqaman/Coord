@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Coord.Models
 {
-    public class TollsGpsTracesResponse : List<TollsGpsTracesResponseObject>
+    public class TollsCostResponse : List<TollsCostResponseObject>
     {
     }
 
-    public class TollsGpsTracesResponseObject
+    public class TollsCostResponseObject
     {
         [JsonProperty(PropertyName = "checkpoints")]
         public List<CheckPoint> CheckPoints { get; set; }

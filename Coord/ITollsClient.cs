@@ -5,7 +5,9 @@ namespace Coord
 {
     public interface ITollsClient
     {
-        TollsGpsTracesResponse SendGpsTracesRequest(TollsGpsTracesRequest req);
-        Task<TollsGpsTracesResponse> SendGpsTracesRequestAsync(TollsGpsTracesRequest req);
+        TollsCostResponse SendGpsTracesRequest(TollsGpsTracesRequest req);
+        Task<TollsCostResponse> SendGpsTracesRequestAsync(TollsGpsTracesRequest req);
+        TollsCostResponse SendTollsOnRouteRequest(TollsOnRouteRequest req);
+        Task<TollsCostResponse> SendTollsOnRouteRequestAsync(TollsOnRouteRequest req);
     }
 }

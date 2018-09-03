@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>This is the Coord api Wrapper Built in .Net Standered</Description>
+    <PackageLicenseUrl>https://github.com/Umerfarooqaman/Coord/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl />
+    <RepositoryUrl>https://github.com/Umerfarooqaman/Coord</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>coord gps traces tolls usa</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
