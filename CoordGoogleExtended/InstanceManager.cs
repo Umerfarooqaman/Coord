@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
-namespace Coord
+namespace CoordGoogleExtended
 {
     public class InstanceManager<T>
     {
@@ -10,6 +12,19 @@ namespace Coord
         public static T GetInstance()
         {
             return (T)Activator.CreateInstance(typeof(T)); ;
+        }
+
+        public Dictionary<string, T> SharedPool
+        {
+            set
+            {
+                var pool = typeof(InstanceManager<T>).GetTypeInfo().DeclaredFields
+                    .First(field => field.Name == "Pool");
+                pool.SetValue(null, value);
+
+
+
+            }
         }
 
         public static T GetScopedInstance(string scope)

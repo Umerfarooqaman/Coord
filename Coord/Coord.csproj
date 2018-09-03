@@ -2,14 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>This is the Coord api Wrapper Built in .Net Standered</Description>
+    <Description>This is the Coord Tolls api Wrapper Built in .Net Standered , to consume Gps Traces and Toll on Route services</Description>
     <PackageLicenseUrl>https://github.com/Umerfarooqaman/Coord/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl />
     <RepositoryUrl>https://github.com/Umerfarooqaman/Coord</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
-    <PackageTags>coord gps traces tolls usa</PackageTags>
+    <PackageTags>coord gps traces tolls usa route price polyline</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
+    <Authors>Umer Farooq Aman</Authors>
   </PropertyGroup>
 
   <ItemGroup>
