@@ -11,8 +11,13 @@ namespace CoordGoogleExtended
 
         public CoordGoogleClient()
         {
-           
+           GoogleMapServices.DirectionsService.
         }
+
+
+        public 
+
+
 
 
 

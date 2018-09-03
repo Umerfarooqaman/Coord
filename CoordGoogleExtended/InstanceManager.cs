@@ -14,7 +14,7 @@ namespace CoordGoogleExtended
             return (T)Activator.CreateInstance(typeof(T)); ;
         }
 
-        public Dictionary<string, T> SharedPool
+        public static Dictionary<string, T> SharedPool
         {
             set
             {
