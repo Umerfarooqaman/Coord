@@ -10,7 +10,7 @@
     <PackageTags>coord gps traces tolls usa route price polyline</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Authors>Umer Farooq Aman</Authors>
   </PropertyGroup>
 
