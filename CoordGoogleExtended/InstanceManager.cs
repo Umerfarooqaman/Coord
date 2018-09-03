@@ -9,6 +9,8 @@ namespace CoordGoogleExtended
     {
         public static readonly Dictionary<string, T> Pool = new Dictionary<string, T>();
 
+        public string CurrentScope { get; set; }
+        
         public static T GetInstance()
         {
             return (T)Activator.CreateInstance(typeof(T)); ;
@@ -32,6 +34,10 @@ namespace CoordGoogleExtended
             if (Pool.ContainsKey(scope))
             {
                 Pool.TryGetValue(scope, value: out var service);
+
+                var pool = service.GetType().GetTypeInfo().DeclaredFields
+                    .First(field => field.Name == "CurrentScope");
+                pool.SetValue(null, scope);
 
                 return service;
             }
