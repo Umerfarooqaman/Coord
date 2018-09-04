@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Coord;
+﻿using Coord;
 using Coord.Models;
 using CoordGoogleExtended.Model;
 using GoogleMapServices;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CoordGoogleExtended
 {
-   public class CoordGoogleClient :InstanceManager<CoordGoogleClient>
+    public class CoordGoogleClient : InstanceManager<CoordGoogleClient>
     {
         /// <summary>
         /// share pool to be used in enterprise application
@@ -19,6 +18,13 @@ namespace CoordGoogleExtended
             set => GoogleMapServices.DirectionsService.SharedPool = value;
         }
 
+        public static string GoogleMapKey { get => GoogleMapServices.GoogleMapCredentials.Key; set => GoogleMapServices.GoogleMapCredentials.Key = value }
+
+        public static string CoordKey
+        {
+            get => TollsClient.Key;
+            set => TollsClient.Key = value;
+        }
 
 
         /// <summary>
@@ -30,29 +36,38 @@ namespace CoordGoogleExtended
         }
 
 
-      
+
         public CoordGoogleResponse SendCoordGoogleRequest(CoordGoogleRequest req)
         {
             DirectionsService directionsService = string.IsNullOrEmpty(CurrentScope)
                 ? DirectionsService.GetScopedInstance(CurrentScope)
                 : DirectionsService.GetSingletonInstance();
 
+            
+            Task<GoogleMapServices.Models.DirectionsResponse> directions = directionsService.GetDirectionsAsync(req);
+
+            CoordGoogleResponse resp = new CoordGoogleResponse() { DirectionsResponse = directions.Result };
+
             TollsClient tollsClient = string.IsNullOrEmpty(CurrentScope)
                 ? TollsClient.GetScopedInstance(CurrentScope)
                 : TollsClient.GetSingletonInstance();
 
-           var directions= directionsService.GetDirectionsAsync(req);
 
-            //populate coord request
+            TollsOnRouteRequest tollsOnRouteRequest =
+                new TollsOnRouteRequest
+                {
+                    DepartureTime = req.DepartureTime?.ToString(),
+                    Vehicle = req.Vehicle
+                };
+            List<GoogleMapServices.Models.Step> stepsEnumerable = directions.Result.Routes.First().Legs.SelectMany(d => d.Steps).ToList();
+            tollsOnRouteRequest.Steps.AddRange(stepsEnumerable.Select(d => new Step() { EncodedPolyline = d.Polyline.Points, RoadName = d.HtmlInstructions, Duration = d.Duration.Value }));
 
-            TollsOnRouteRequest tollsOnRouteRequest =new TollsOnRouteRequest();
-
-            var sendTollsOnRouteRequestAsync = tollsClient.SendTollsOnRouteRequestAsync(tollsOnRouteRequest);
+            Task<TollsCostResponse> sendTollsOnRouteRequestAsync = tollsClient.SendTollsOnRouteRequestAsync(tollsOnRouteRequest);
 
 
+            resp.TollsCostResponse = sendTollsOnRouteRequestAsync.Result;
 
-
-            return new CoordGoogleResponse(){DirectionsResponse = directions.Result,TollsCostResponse = sendTollsOnRouteRequestAsync.Result};
+            return resp;
 
         }
 

@@ -7,6 +7,12 @@ namespace Coord.Models
 {
    public class TollsOnRouteRequest
     {
+
+        public TollsOnRouteRequest ()
+        {
+            Steps=new List<Step>();
+        }
+
         [JsonProperty(PropertyName = "departure_time")]
         public string DepartureTime { get; set; }
         [JsonProperty(PropertyName = "steps")]

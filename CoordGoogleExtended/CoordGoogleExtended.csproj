@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>This is the Coord Tolls api Wrapper Built in .Net Standered , to consume Toll on Route services and google direction service</Description>
+    <PackageLicenseUrl>https://github.com/Umerfarooqaman/Coord/blob/master/LICENSE.md</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Umerfarooqaman/Coord</RepositoryUrl>
+    <PackageTags>coord gps traces tolls usa route price polyline google directions steps legs cash</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

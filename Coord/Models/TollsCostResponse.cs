@@ -32,5 +32,12 @@ namespace Coord.Models
 
         [JsonProperty(PropertyName = "roadway_name")]
         public string RoadWayName { get; set; }
+
+        [JsonProperty(PropertyName = "code")]
+        public int ErrorCode { get; set; }
+
+        [JsonProperty(PropertyName = "message")]
+        public string Message { get; set; }
+
     }
 }
